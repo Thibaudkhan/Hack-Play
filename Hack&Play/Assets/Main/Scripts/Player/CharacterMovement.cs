@@ -84,14 +84,33 @@ public class CharacterMovement : MonoBehaviour
         
         controller.Move(move *  Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Debug.Log("Jump");
-            animator.SetBool("Jumping", true);
+        //create delay variable to check since when the player is not grounded
 
-            velocity.y = Mathf.Sqrt( -2f * gravity);
+        if (isGrounded)
+        {
         
+            // check since when the player is not grounded
+            
+            // if the player is grounded, set the jump animation to false
+            
+            
+            //animator.SetBool("Jumping", false);
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Jump");
+                //animator.SetTrigger("Jump");
+                
+                animator.SetTrigger("isJumping");
+                //animator.SetBool("Jumping", false);
+        
+                velocity.y = Mathf.Sqrt( -2f * gravity);
+        
+            }
+
+
         }
+        
 
         velocity.y += gravity * Time.deltaTime;
         

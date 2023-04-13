@@ -6,12 +6,19 @@ public class FileManager : MonoBehaviour
 {
     private string currentPath;
     private List<string> currentFolderContent;
-    
+    private ComputerManager computerManager;
     private void Start()
     {
         Debug.Log("start");
-        // Initialize the current path to the root directory
-        currentPath = Application.streamingAssetsPath+"/Os/";
+
+        // get FolderPath from ComputerManager parent object
+        //computerManager = transform.parent.GetComponent<ComputerManager>();
+        //ComputerManager computerManager = transform.parent.GetComponent<ComputerManager>();
+        //GameObject parentObject = GameObject.Find("ParentObject");
+        computerManager = GetComponentInParent<ComputerManager>();
+
+        
+        currentPath = computerManager.folderPath;
         Debug.Log("currentPath" + currentPath);
         //currentPath = "/";
         LoadFolderContent(currentPath);
@@ -143,10 +150,16 @@ public class FileManager : MonoBehaviour
     {
         // Navigate to the folder at the given path
         // Set myPath to "/Assets/StreamingAssets/" if it's null or empty
-        newPath = string.IsNullOrEmpty(newPath) || newPath == "/" ? Application.streamingAssetsPath+"/Os/" : newPath;
+        if(string.IsNullOrEmpty(newPath) || newPath[0].Equals('/'))
+        {
+            // remove the first character if it's a slash   
+            newPath = newPath.Substring(1);
+            newPath = Application.streamingAssetsPath+"/OsData/"+computerManager.name + "/Os/" + newPath;
+        }
+        //newPath = string.IsNullOrEmpty(newPath) || newPath[0].Equals("/") ? Application.streamingAssetsPath+"/Os/" : newPath;
         string absolutePath = Path.Combine(currentPath, newPath);
         
-        if (!Path.GetFullPath(absolutePath).Replace("\\", "/").StartsWith(Application.streamingAssetsPath+"/Os"))
+        if (!Path.GetFullPath(absolutePath).Replace("\\", "/").StartsWith(Application.streamingAssetsPath+"/OsData/"+computerManager.name+"/Os"))
         {
             // The target path is outside the StreamingAssets folder, so don't execute the function
             return "";

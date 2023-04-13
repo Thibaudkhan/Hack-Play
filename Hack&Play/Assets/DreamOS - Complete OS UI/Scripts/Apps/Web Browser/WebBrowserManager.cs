@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ namespace Michsky.DreamOS
         [SerializeField] private Transform downloadFolder;
         [SerializeField] private GameObject downloadEmpty;
         public WindowManager downloadsWindow;
-
+        private WebPagesManager webPagesManager;
         // Settings
         [SerializeField][Range(0, 30)] public float loadingTime = 1;
         [HideInInspector] public bool modSupport;
@@ -66,6 +67,14 @@ namespace Michsky.DreamOS
             if (userManager != null) { saveKey = userManager.machineID; }
 
             InitializeWebBrowser();
+        }
+
+        private void Start()
+        {
+            // init webLibrary code
+            //webPagesManager = new WebPagesManager();
+            webLibrary.webPages.Add(new WebBrowserLibrary.WebPage { pageTitle = "temp", pageURL = "temp.com", pageIcon = null, pageContent = null, isModContent = false, modHelper = false });
+
         }
 
         public void InitializeWebBrowser()
@@ -150,6 +159,13 @@ namespace Michsky.DreamOS
 
         public void InitializeWebPage()
         {
+            // parse  urlField.text.ToLower() to onlin get the url before /
+
+            string[] urlSplit = urlField.text.Split('?');
+   
+            urlField.text = urlSplit[0];
+            Debug.Log(urlSplit[0]);
+            
             if (urlField.text == webLibrary.homePage.pageURL)
             {
                 tabIcon.sprite = webLibrary.homePage.pageIcon;
@@ -170,16 +186,27 @@ namespace Michsky.DreamOS
                 for (int i = 0; i < webLibrary.webPages.Count; i++)
                 {
                     if (urlField.text.ToLower() == webLibrary.webPages[i].pageURL
-                        || urlField.text.ToLower() == "www." + webLibrary.webPages[i].pageURL)
+                        || urlField.text.ToLower() == "www." + webLibrary.webPages[i].pageURL
+                         )
                     {
+                        // check if urlSplit[1] is not null 
+             
+                        
                         urlIndex = i;
                         break;
                     }
                 }
 
+                
+                
                 if (networkManager.hasConnection == true && urlField.text.ToLower() == webLibrary.webPages[urlIndex].pageURL
                     || networkManager.hasConnection == true && urlField.text.ToLower() == "www." + webLibrary.webPages[urlIndex].pageURL)
                 {
+                    
+                    if (urlSplit[1] != null)
+                    {
+                        webLibrary.webPages[urlIndex].argument = urlSplit[1];
+                    }
                     tabIcon.sprite = webLibrary.webPages[urlIndex].pageIcon;
                     tabTitle.text = webLibrary.webPages[urlIndex].pageTitle;
                     urlField.text = webLibrary.webPages[urlIndex].pageURL.Replace("www.", "").Trim();

@@ -14,6 +14,7 @@ public class OsSystem : MonoBehaviour
     {
         //FolderSystem folders = gameObject.AddComponent<FolderSystem>();
         commanderApp = GameObject.Find("Commander").GetComponent<CommanderManager>();
+        Debug.Log("start os system");
         folders = GameObject.Find("Folde").GetComponent<FileManager>();
         ls();
         cd();
@@ -47,6 +48,7 @@ public class OsSystem : MonoBehaviour
 
         item.onProcessEvent.AddListener(delegate
         {
+            
             commanderApp.returnedText = folders.Navigate(commanderApp.argument);
         });
 

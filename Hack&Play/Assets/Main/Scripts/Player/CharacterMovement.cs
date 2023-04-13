@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isDrunk = true;
     
     private Animator animator;
+    private CharacterInteraction characterInteraction;
     
     private float gravity = -9.81f;
     private float jumpHeight = 2f;
@@ -29,10 +30,14 @@ public class CharacterMovement : MonoBehaviour
     {
         //animator = GetComponentInChildren<Animator>(true);    
         animator = GetComponent<Animator>();
+        characterInteraction = GetComponent<CharacterInteraction>();
     }
     
     private void Update()
     {
+        if(characterInteraction.isUsingComputer)
+            return;
+        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         
         if(isGrounded && velocity.y < 0)

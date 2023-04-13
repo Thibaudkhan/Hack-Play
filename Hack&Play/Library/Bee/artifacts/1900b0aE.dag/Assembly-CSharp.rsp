@@ -116,6 +116,7 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Plugin/SQLite dlls/Mono.Data.SqliteClient.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -552,12 +553,19 @@
 "Assets/DreamOS - Complete OS UI/Standard Assets/Utility/CurveControlledBob.cs"
 "Assets/DreamOS - Complete OS UI/Standard Assets/Utility/FOVKick.cs"
 "Assets/DreamOS - Complete OS UI/Standard Assets/Utility/LerpControlledBob.cs"
+"Assets/Main/Scripts/Levels/LevelOneManager.cs"
+"Assets/Main/Scripts/Network/NetworkManager.cs"
+"Assets/Main/Scripts/Network/Router.cs"
 "Assets/Main/Scripts/Player/CharacterInteraction.cs"
 "Assets/Main/Scripts/Player/CharacterMovement.cs"
 "Assets/Main/Scripts/Player/MouseLook.cs"
 "Assets/Main/Scripts/Terminal/ComputerManager.cs"
 "Assets/Main/Scripts/Terminal/FileManager.cs"
 "Assets/Main/Scripts/Terminal/OsSystem.cs"
+"Assets/Os/DatabaseManager.cs"
+"Assets/Os/UsDatabase.cs"
+"Assets/Os/UsUserManager.cs"
+"Assets/Os/WebPagesManager.cs"
 "Assets/ScifiOfficeLite/Scripts/DemoDoor.cs"
 "Assets/ScifiOfficeLite/Scripts/DemoFirstPersonController.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"

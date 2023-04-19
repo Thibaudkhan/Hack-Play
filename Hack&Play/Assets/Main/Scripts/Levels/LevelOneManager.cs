@@ -1,51 +1,44 @@
-using System.Collections;
 using System.Collections.Generic;
-using Main.Scripts.Network;
 using UnityEngine;
 
 public class LevelOneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public NetworkManager networkManager;
     public GameObject computerPrefab;
     public GameObject routerPrefab;
 
-    void Start() {
-        
-        // Create a computer
-        //Vector3 positionHack = new Vector3(0, 0, 0);
-         GameObject computerHacker = Instantiate(computerPrefab, new Vector3(-1.2F, 1.33F, -5.45F), transform.rotation);
-         ComputerManager computerManagerHacker = computerHacker.AddComponent<ComputerManager>();
-         computerManagerHacker.networkManager = networkManager;
-         computerManagerHacker.name = "Hacker";
-         computerManagerHacker.tag = "Computer";
-         computerManagerHacker.gameObject.name = "Computer Hacker";
-         // find child  game object in computerManagerHacker
-         //GameObject canvaHack = computerManagerHacker.gameObject.transform.Find("DreamOS Canvas").gameObject;
-         //canvaHack.SetActive(false);
-         foreach (Transform child in computerManagerHacker.transform)
-         {
-             child.gameObject.SetActive(false);
-         }
-        
-        //
-        GameObject computerCible1= Instantiate(computerPrefab, new Vector3(-1.2F, 1.33F, 0), transform.rotation);
-        ComputerManager computerManagerCible1 = computerCible1.AddComponent<ComputerManager>();
-        computerManagerCible1.networkManager = networkManager;
-        computerManagerCible1.name = "Cible1";
-        computerManagerCible1.tag = "Computer";
-        GameObject canvaCible1 = computerManagerCible1.gameObject.transform.Find("DreamOS Canvas").gameObject;
-        canvaCible1.SetActive(false);
-        foreach (Transform child in computerManagerCible1.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
-        
-        // Create a router
-        GameObject routerObject = Instantiate(routerPrefab);
-        Router routerManager = routerObject.GetComponent<Router>();
-        routerManager.networkManager = networkManager;
-        routerManager.name = "Router";
+    private readonly List<(string name, Vector3 position)> computers = new List<(string, Vector3)>
+    {
+        ("Hacker", new Vector3(-1.2F, 1.33F, -5.45F)),
+        ("Cible1", new Vector3(-1.2F, 1.33F, 0)),
+    };
 
+    void Start()
+    {
+        // Create router and set properties
+        Router router = Instantiate(routerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Router>();
+        router.name = "Router";
+        router.networkManager = networkManager;
+        // Create computers and set properties
+        var i = 0;
+        foreach (var (name, position) in computers)
+        {
+            ComputerManager computerManager = Instantiate(computerPrefab, position, transform.rotation).AddComponent<ComputerManager>();
+            computerManager.name = name;
+            computerManager.tag = "Computer";
+            computerManager.router = router;
+            computerManager.gameObject.name = $"Computer {name}";
+            router.AddComputerToPort(i,computerManager);
+
+            foreach (Transform child in computerManager.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+            // get component child by name
+            //computerManager.transform.Find("DreamOS Canvas").gameObject.SetActive(false);
+            
+            
+            i++;
+        }
     }
 }

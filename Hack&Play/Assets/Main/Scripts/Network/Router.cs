@@ -1,141 +1,130 @@
-﻿namespace Main.Scripts.Network
-{
+﻿using System.Collections;
 using System.Collections.Generic;
+using Main.Scripts.Network;
 using UnityEngine;
 
-public class Router : ComputerManager
+public class Router : MonoBehaviour
 {
-    // List of dictionaries for each port on the router
-    private List<Dictionary<string, ComputerManager>> portList = new List<Dictionary<string, ComputerManager>>();
-    private NetworkManager networkManager;
+    // The list of computers connected to this router
+    private List<ComputerManager> computers = new List<ComputerManager>();
 
-    // public Router (string name, NetworkManager networkManager) : base(name, networkManager)
-    // {
-    //     this.networkManager = networkManager;
-    // }
+    // The mapping of port numbers to computers
+    private Dictionary<int, ComputerManager> portMappings = new Dictionary<int, ComputerManager>();
+
+    // The network manager that manages this router
+    public NetworkManager networkManager;
+
+    private Dictionary<string, ComputerManager> macToComputer = new Dictionary<string, ComputerManager>();
+
     
-    void Start()
+    public void AddMacComputer(ComputerManager computer)
     {
-        // Initialize the port list with empty dictionaries
-        for (int i = 0; i < 4; i++)
+        if (computer != null && !macToComputer.ContainsKey(computer.MacAddress))
         {
-            portList.Add(new Dictionary<string, ComputerManager>());
+            macToComputer.Add(computer.MacAddress, computer);
         }
     }
 
-    // Method to add a computer to a port
+
+    
+    public void RemoveMacComputer(ComputerManager computer)
+    {
+        macToComputer.Remove(computer.MacAddress);
+    }
+
+    public bool HasMacAddress(string macAddress)
+    {
+        return macToComputer.ContainsKey(macAddress);
+    }
+
+    public ComputerManager GetMacComputer(string macAddress)
+    {
+        if (HasMacAddress(macAddress))
+        {
+            return macToComputer[macAddress];
+        }
+        return null;
+    }
+    
+    // Add a computer to a port on this router
     public void AddComputerToPort(int port, ComputerManager computer)
     {
-        // Generate a unique IP address for the computer
-        string ipAddress = GenerateIPAddress();
 
-        // Add the computer to the dictionary for the specified port
-        portList[port].Add(ipAddress, computer);
-
-        // Add the computer and IP address to the routing table
-        networkManager.ipAddresses.Add(computer, ipAddress);
-        networkManager.routingTable.Add(ipAddress, computer);
-    }
-
-    // Method to remove a computer from a port
-    public void RemoveComputerFromPort(int port, ComputerManager computer)
-    {
-        // Get the IP address of the computer
-        string ipAddress = networkManager.ipAddresses[computer];
-
-        // Remove the computer from the dictionary for the specified port
-        portList[port].Remove(ipAddress);
-
-        // Remove the computer and IP address from the routing table
-        networkManager.ipAddresses.Remove(computer);
-        networkManager.routingTable.Remove(ipAddress);
-    }
-
-    // Method to get the computer associated with an IP address
-    public ComputerManager GetComputerForIPAddress(string ipAddress)
-    {
-        // Check if the IP address is in the routing table
-        if (networkManager.routingTable.ContainsKey(ipAddress))
+        // Check if the port is already occupied
+        if (portMappings.ContainsKey(port))
         {
-            return networkManager.routingTable[ipAddress];
+            Debug.LogError("Port " + port + " is already occupied by " + portMappings[port].name);
+            return;
+        }
+
+        // Add the computer to the list of connected computers
+        computers.Add(computer);
+        AddMacComputer(computer);
+
+        // Add the port mapping
+        portMappings.Add(port, computer);
+
+        networkManager.AssignIpAddress(computer);
+    }
+
+    // Remove a computer from a port on this router
+    public void RemoveComputerFromPort(int port)
+    {
+        if (portMappings.ContainsKey(port))
+        {
+            ComputerManager computer = portMappings[port];
+            portMappings.Remove(port);
+            computers.Remove(computer);
+            networkManager.RemoveComputerFromRoutingTable(computer);
+            Debug.Log("Computer " + computer.name + " removed from port " + port);
         }
         else
         {
-            Debug.LogError("IP address not found: " + ipAddress);
-            return null;
+            Debug.LogError("No computer connected to port " + port);
         }
     }
-
-    // Method to make a connection between two IP addresses
-    public void Connect(string ipAddress1, string ipAddress2)
+    
+    public string GetIPAddress(ComputerManager computer)
     {
-        // Get the computers associated with the IP addresses
-        ComputerManager computer1 = GetComputerForIPAddress(ipAddress1);
-        ComputerManager computer2 = GetComputerForIPAddress(ipAddress2);
+        return networkManager.GetIpAddress(computer);
+    }
 
-        // Check if both computers are connected to the same router
-        if (computer1 is Router && computer2 is Router && computer1 == computer2)
+    public ComputerManager GetComputer(string ipAddress)
+    {
+        return networkManager.GetComputer(ipAddress);
+    }
+
+
+    // Send a message from one computer to another
+    public void SendMessage(int sourcePort, int destinationPort, string message)
+    {
+        if (portMappings.ContainsKey(destinationPort))
         {
-            // Get the ports for each computer
-            int port1 = GetPortForIPAddress(ipAddress1);
-            int port2 = GetPortForIPAddress(ipAddress2);
+            ComputerManager recipient = portMappings[destinationPort];
+            ComputerManager sender = portMappings[sourcePort];
 
-            // Connect the two ports together
-            portList[port1].Add(ipAddress2, computer2);
-            portList[port2].Add(ipAddress1, computer1);
-
-            Debug.Log("Connected " + ipAddress1 + " and " + ipAddress2);
+            recipient.ReceiveMessage(sender.IpAddress, message);
         }
         else
         {
-            Debug.LogError("Cannot connect " + ipAddress1 + " and " + ipAddress2 +
-                           ". Computers are not connected to the same router.");
+            Debug.LogError("Destination port " + destinationPort + " is not connected to any computer.");
         }
     }
+    
 
-    // Method to generate a unique IP address
-    private string GenerateIPAddress()
+    public void SendPacket(Packet packet)
     {
-        // Generate a random IP address in the format "xxx.xxx.xxx.xxx"
-        string ipAddress = "";
-
-        for (int i = 0; i < 4; i++)
+        string destinationIpAddress = packet.receiverIpAddress;
+        Debug.Log("Sending packet to " + destinationIpAddress);
+        // Get the ComputerManager corresponding to the destination IP address
+        ComputerManager recipient = GetComputer(destinationIpAddress);
+        string macAddress = recipient.MacAddress;
+        // Check if the MAC address of the recipient is known
+        if (macToComputer.ContainsKey(macAddress) )
         {
-            ipAddress += UnityEngine.Random.Range(0, 255);
-            if (i < 3)
-            {
-                ipAddress += ".";
-            }
-        }
-
-        // Check if the IP address is already in use
-        if (networkManager.routingTable.ContainsKey(ipAddress))
-        {
-            // If the IP address is already in use, generate a new one
-            return GenerateIPAddress();
-        }
-        else
-        {
-            return ipAddress;
+            // Send the packet to the recipient
+            recipient.ReceivePacket(packet);
         }
     }
-
-// Method to get the port associated with an IP address
-    private int GetPortForIPAddress(string ipAddress)
-    {
-        // Check each dictionary in the port list for the IP address
-        for (int i = 0; i < portList.Count; i++)
-        {
-            if (portList[i].ContainsKey(ipAddress))
-            {
-                return i;
-            }
-        }
-
-        // If the IP address is not found, return -1
-        return -1;
-    }
-}
-
 
 }

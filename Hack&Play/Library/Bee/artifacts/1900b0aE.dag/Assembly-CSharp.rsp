@@ -555,6 +555,7 @@
 "Assets/DreamOS - Complete OS UI/Standard Assets/Utility/LerpControlledBob.cs"
 "Assets/Main/Scripts/Levels/LevelOneManager.cs"
 "Assets/Main/Scripts/Network/NetworkManager.cs"
+"Assets/Main/Scripts/Network/Packet.cs"
 "Assets/Main/Scripts/Network/Router.cs"
 "Assets/Main/Scripts/Player/CharacterInteraction.cs"
 "Assets/Main/Scripts/Player/CharacterMovement.cs"

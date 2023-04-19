@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6624192455664665498
+--- !u!1 &3638421823204260583
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6624192455664665496}
-  - component: {fileID: 6624192455664665497}
+  - component: {fileID: 3638421823204260580}
+  - component: {fileID: 3638421823204260581}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6624192455664665496
+--- !u!4 &3638421823204260580
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6624192455664665498}
+  m_GameObject: {fileID: 3638421823204260583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.2010963, y: 2.5971413, z: -9.160157}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6624192455664665497
+--- !u!114 &3638421823204260581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6624192455664665498}
+  m_GameObject: {fileID: 3638421823204260583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f0e313c49106ce45af191b6af3fd791, type: 3}
@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkManager: {fileID: 5562224853523398554, guid: 4c6155bc8850d804a97908839a493d12, type: 3}
   computerPrefab: {fileID: 4134868831366621262, guid: 2f353d63baab63f4199c431ca41967de, type: 3}
-  routerPrefab: {fileID: 1972485316256963323, guid: df9f8dfa70d235a419ce7294c1ffbdca, type: 3}
+  routerPrefab: {fileID: 2241657247695037361, guid: 277e7d4fabbc30d45b6cd78af6957005, type: 3}

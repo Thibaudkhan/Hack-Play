@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -13,6 +15,11 @@ namespace Michsky.DreamOS
 {
     public class CommanderManager : MonoBehaviour
     {
+        // personal
+        public string returnedText;
+        public string[] arguments;
+        
+        
         // Command List
         public List<CommandItem> commands = new List<CommandItem>();
 
@@ -50,7 +57,11 @@ namespace Michsky.DreamOS
             public float feedbackDelay = 0;
             public float onProcessDelay = 0;
             public UnityEvent onProcessEvent;
+            public bool isNewCommand;
         }
+
+
+
 
         void OnEnable()
         {
@@ -100,18 +111,36 @@ namespace Michsky.DreamOS
         {
             // Reset previously called command
             currentCommand = "";
+            returnedText = "";
+            //  empty arguments
+            arguments = null;
             commandIndex = -1;
             currentCommand = commandInput.text;
 
-            // Stop previous typewriter
+            string[] words = currentCommand.Split(' ');
+            
+          
+            string firstWord = words[0];
             StopCoroutine("ApplyTypewriter");
 
+            Debug.Log(currentCommand);
+            Debug.Log("firstWord "+ firstWord.StartsWith("./"));
             // Search within command list
             for (int i = 0; i < commands.Count; i++)
             {
-                if (currentCommand == commands[i].command)
+
+                
+                if (firstWord == commands[i].command )
                 {
-                    currentCommand = commands[i].command;
+
+                    //currentCommand = commands[i].command;
+                    if (words.Length > 1)
+                    {
+                        arguments = words.Skip(1).ToArray();
+
+                    }
+
+
                     commandIndex = i;
                     break;
                 }
@@ -154,12 +183,35 @@ namespace Michsky.DreamOS
             }
 
             // Process feedback test
-            if (commands[commandIndex].feedbackText != "") { StartCoroutine("WaitForFeedbackDelay", commands[commandIndex].feedbackDelay); }
 
             // Invoke events
-            if (commands[commandIndex].onProcessDelay == 0) { commands[commandIndex].onProcessEvent.Invoke(); }
+
+
+            if (commands[commandIndex].onProcessDelay == 0)
+            {
+                if (commands[commandIndex].onProcessEvent != null)
+                {
+                    commands[commandIndex].onProcessEvent.Invoke();
+                }
+            }
             else { StartCoroutine("WaitForProcessDelay", commands[commandIndex].onProcessDelay); }
 
+
+            Debug.Log("Before null check"+ commands[commandIndex].feedbackText);
+            if (commands[commandIndex].isNewCommand )
+            {
+                Debug.Log("In null check "+returnedText);
+
+                commands[commandIndex].feedbackText = returnedText;
+            }
+
+            
+            if (commands[commandIndex].feedbackText != "") { 
+                StartCoroutine("WaitForFeedbackDelay", commands[commandIndex].feedbackDelay); 
+            }
+            
+
+            
             // Reset input
             commandInput.text = "";
 
@@ -237,6 +289,7 @@ namespace Michsky.DreamOS
             LayoutRebuilder.ForceRebuildLayoutImmediate(historyParentRT);
             StartCoroutine("FixLayout");
         }
+        
 
         public void AddNewCommand() { commands.Add(null); }
 
@@ -259,6 +312,8 @@ namespace Michsky.DreamOS
             commandHistory.text = commandHistory.text + "\n";
             UpdateTime();
 
+
+            
             // Check for typewriter
             if (useTypewriterEffect == true) { typewriterHelper = commands[commandIndex].feedbackText; StartCoroutine("ApplyTypewriter", typewriterDelay); }
             else { commandHistory.text = commandHistory.text + commands[commandIndex].feedbackText; }
@@ -271,9 +326,10 @@ namespace Michsky.DreamOS
 
         IEnumerator WaitForProcessDelay(float forSec)
         {
-            yield return new WaitForSeconds(forSec);
             commands[commandIndex].onProcessEvent.Invoke();
+            yield return new WaitForSeconds(forSec);
             StopCoroutine("WaitForProcessDelay");
         }
+        
     }
 }

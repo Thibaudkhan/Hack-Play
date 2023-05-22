@@ -16,6 +16,8 @@ namespace Michsky.DreamOS
         public List<WebPage> webPages = new List<WebPage>();
         public List<DownloadableFiles> dlFiles = new List<DownloadableFiles>();
 
+        // Library Settings
+        //webPages.Add(new WebPage { pageTitle = "Home", pageURL = "home", pageIcon = null, pageContent = null, isModContent = false, modHelper = false });
         [System.Serializable]
         public class WebPage
         {
@@ -23,6 +25,7 @@ namespace Michsky.DreamOS
             public string pageURL = "www.example.com";
             public Sprite pageIcon;
             public GameObject pageContent;
+            public string argument = "";
             [HideInInspector] public bool isModContent = false;
             [HideInInspector] public bool modHelper = false;
         }

@@ -10,6 +10,14 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+Hack&Play/[Ll]ibrary/
+Hack&Play/[Tt]emp/
+Hack&Play/[Oo]bj/
+Hack&Play/[Bb]uild/
+Hack&Play/[Bb]uilds/
+Hack&Play/[Ll]ogs/
+Hack&Play/[Mm]emoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -58,3 +66,11 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+Hack&Play/Library/Artifacts/00/
+
+Hack&Play/Library/Artifacts/16/
+
+Hack&Play/Library/
+
+Hack&Play - Copie/

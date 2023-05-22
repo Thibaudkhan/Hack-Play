@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f751a1e1edde242be719dda955ddfd, type: 3}
+  m_Name: First Job
+  m_EditorClassIdentifier: 
+  mailFolder: 0
+  subject: First job
+  from: mrRobot@hmail.com
+  fromName: Mr Robot
+  to: you@hmail.com
+  time: 12:00
+  date: 2022.01.01
+  contactImage: {fileID: 0}
+  useCustomContent: 0
+  mailContent: 'Hey You,
+
+
+    Your first Job it''s to go inside of the filliale
+    DevilCorp called MiniCorp. You will go as an computer scientist that will repair
+    their connection. Don''t worry for the connection it will be fix after one hour
+    I just made a DDoS attack to block their wifi. Anyway once you arrived you have
+    to find the good password. For that try to get the traffic http, udp I don''t
+    care try to find as much password possible. Once you found it write this command
+    "send {password}" It will send me the paswword and valid or not your mission.
+
+
+    Good
+    luck You we need you '
+  customContentPrefab: {fileID: 0}
+  attachments: []

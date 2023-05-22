@@ -23,3 +23,74 @@ MonoBehaviour:
     isCustom: 0
     isModContent: 0
     modHelper: 0
+  - noteTitle: URGENT
+    noteContent: 'URGENT
+
+
+      Hey me !
+
+
+      You must know that. You have 24
+      hours before losing memories. So you can find another document where I wrote
+      some commands that you will need.
+
+
+      Find your tasks in you mail ou message.
+
+
+'
+    isDeleted: 0
+    isCustom: 0
+    isModContent: 0
+    modHelper: 0
+  - noteTitle: Commands
+    noteContent: 'Here you have so command you.
+
+      ls: Lists files and directories
+      in the current directory.
+
+
+      cd: Changes the current directory.
+
+
+      rm:
+      Removes (deletes) files and directories.
+
+
+      nano: Opens the Nano text
+      editor to create or edit files.
+
+      
+
+      mkdir: Creates a new directory.
+
+      
+
+      ifconfig:
+      Displays network interface configuration information.
+
+      
+
+      ping:
+      Sends a network request to a specific IP address to check connectivity and
+      measure round-trip time.
+
+      
+
+      nmap: Network exploration tool used
+      for port scanning, detecting open ports, and identifying services running on
+      remote systems.
+
+      
+
+      tcpdump: Captures and analyzes network traffic
+      in real-time.
+
+      
+
+      help: Displays help information or documentation
+      for a specific command.'
+    isDeleted: 0
+    isCustom: 0
+    isModContent: 0
+    modHelper: 0

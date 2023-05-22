@@ -25,12 +25,12 @@ MonoBehaviour:
 
 
     Your first Job it''s to go inside of the filliale
-    DevilCorp called MiniCorp. You will go as an Informaticien that will repair their
-    connection. Don''t worry for the connection it will be fix after one hour I just
-    made a DDoS attack to block their wifi. Anyway once you arrived you have to find
-    the good password. For that try to get the traffic http, udp I don''t care try
-    to find as much password possible. Once you found it write this command "send
-    {password}" It will send me the paswword and valid or not your mission.
+    DevilCorp called MiniCorp. You will go as an computer scientist that will repair
+    their connection. Don''t worry for the connection it will be fix after one hour
+    I just made a DDoS attack to block their wifi. Anyway once you arrived you have
+    to find the good password. For that try to get the traffic http, udp I don''t
+    care try to find as much password possible. Once you found it write this command
+    "send {password}" It will send me the paswword and valid or not your mission.
 
 
     Good

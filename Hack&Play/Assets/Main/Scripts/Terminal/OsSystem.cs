@@ -678,7 +678,7 @@ public class OsSystem : MonoBehaviour
             case "2":
                 
                 if ( NetworkManager.GetComputer(commanderApp.arguments[1]) == null)
-                {
+                {   
                     SceneManager.LoadScene(current_scene);
                     return true;
                 }

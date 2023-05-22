@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f751a1e1edde242be719dda955ddfd, type: 3}
+  m_Name: Second Job
+  m_EditorClassIdentifier: 
+  mailFolder: 0
+  subject: Second  job
+  from: mrRobot@hmail.com
+  fromName: Mr Robot
+  to: you@hmail.com
+  time: 12:00
+  date: 2022.01.01
+  contactImage: {fileID: 0}
+  useCustomContent: 0
+  mailContent: "Hey You,\n\nSencond Mission. \nJust make an DoS attack to an user
+    it will desqtroy their computer and they will call us for the third job.\n\n\nGood
+    luck You we need you "
+  customContentPrefab: {fileID: 0}
+  attachments: []

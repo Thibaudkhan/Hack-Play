@@ -39,7 +39,8 @@ public class AIController : MonoBehaviour
         if (index != 1)
             return;
         
-        string computerCible = NetworkManager.GetIpAddress(NetworkManager.computers[ NetworkManager.computers.Count - (index+1)]);
+        string computerCible = NetworkManager.GetIpAddress(NetworkManager.computers[2]);
+        Debug.Log("the ip " +computerCible);
 
         foreach (CommanderManager.CommandItem command in computerManager.osSystem.CommanderApp.commands)
         {

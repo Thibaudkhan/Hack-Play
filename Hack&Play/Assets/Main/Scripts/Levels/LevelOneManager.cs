@@ -29,6 +29,7 @@ public class LevelOneManager : MonoBehaviour
         router.name = "Router";
         // Create computers and set properties
         var i = 0;
+        Debug.Log("how many compuyter "+computers.Count);
         foreach (var computer in computers)
         {
             Debug.Log(computer.name);
@@ -43,7 +44,13 @@ public class LevelOneManager : MonoBehaviour
             {
                 AIController aiController = computer.AddComponent<AIController>();
                 aiController.computerManager = computerManager;
-                
+                aiController.computerManager.macMicroship = "intel";
+
+            }
+            else
+            {
+                computerManager.macMicroship = "amd";
+
             }
             //OsSystem osSystem = computer.AddComponent<OsSystem>();
             computerManager.osSystem = computer.AddComponent<OsSystem>();

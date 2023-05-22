@@ -25,7 +25,7 @@ public class ComputerManager : MonoBehaviour
     public  string folderPath;
     private string ipAddress;
     private string macAddress; // nouvelle propriété
-    private string macMicroship; // nouvelle propriété
+    public string macMicroship = ""; // nouvelle propriété
 
     private float minResponseTime = float.MaxValue;
     private float maxResponseTime = float.MinValue;
@@ -147,7 +147,8 @@ public class ComputerManager : MonoBehaviour
 
     private void GenerateNameMac()
     {
-        macMicroship = name == "Hacker" ? "Linux" : "Intel";
+        if (macMicroship == "")
+            macMicroship = "router";
     }
 
     public void ReceiveMessage(string senderIp,string message)

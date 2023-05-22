@@ -17,7 +17,7 @@ public class OsSystem : MonoBehaviour
     //private ComputerManager computerManager;
     public FileManager folders;
     private string _argument = "";
-    private String[] _scenes = {"Home","LevelOne","LevelTwo","LevelThree"};
+    private String[] _scenes = {"Home","LevelOne","LevelTwo","LevelThree","City"};
     private string response = "";
     // create a dicionary of commands
     private Dictionary<string, Action> _commands;
@@ -677,7 +677,7 @@ public class OsSystem : MonoBehaviour
                 return false;
             case "2":
                 
-                if ( commanderApp.arguments[1] == "192.168.1.2" && NetworkManager.GetComputer(commanderApp.arguments[1]) == null)
+                if ( NetworkManager.GetComputer(commanderApp.arguments[1]) == null)
                 {
                     SceneManager.LoadScene(current_scene);
                     return true;

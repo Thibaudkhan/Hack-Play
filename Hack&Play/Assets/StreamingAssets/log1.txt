@@ -291,3 +291,589 @@ Url: https://google.com/page4
 Methode: 
 Type: HTTP_REQUEST
 
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page1
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: ls
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: ls
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page3
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: ls
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: ls
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page4
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/logout
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/logout
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page1
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page1
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page3
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page3
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/logout
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/logout
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: login: admin
+password: admin
+Url: https://google.com/login
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page3
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: close
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page3
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.2
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page2
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 192.168.1.2
+Message: 
+Url: 
+Methode: open
+Type: FTP_RESPONSE
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page4
+Methode: 
+Type: HTTP_REQUEST
+
+Sender: 192.168.1.3
+Receiver: 57.142.5.12
+Message: 
+Url: https://google.com/page5
+Methode: 
+Type: HTTP_REQUEST
+

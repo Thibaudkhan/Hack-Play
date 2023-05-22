@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 
 public class FileManager : MonoBehaviour
 {
@@ -9,13 +10,15 @@ public class FileManager : MonoBehaviour
     private ComputerManager computerManager;
     private void Start()
     {
-        Debug.Log("start");
+        Debug.Log("start FileManager");
+        Debug.Log(name);
 
         // get FolderPath from ComputerManager parent object
         //computerManager = transform.parent.GetComponent<ComputerManager>();
         //ComputerManager computerManager = transform.parent.GetComponent<ComputerManager>();
         //GameObject parentObject = GameObject.Find("ParentObject");
-        computerManager = GetComponentInParent<ComputerManager>();
+        computerManager = GetComponent<ComputerManager>();
+        Debug.Log("currentPath" + computerManager.name);
 
         
         currentPath = computerManager.folderPath;
@@ -148,41 +151,48 @@ public class FileManager : MonoBehaviour
 
     public string Navigate(string newPath)
     {
+        // Normalize the new path
+        newPath = newPath.Replace('\\', '/');
+
         // Navigate to the folder at the given path
-        // Set myPath to "/Assets/StreamingAssets/" if it's null or empty
-        if(string.IsNullOrEmpty(newPath) || newPath[0].Equals('/'))
+        if (string.IsNullOrEmpty(newPath) || newPath[0].Equals('/'))
         {
-            // remove the first character if it's a slash   
+            // Remove the first character if it's a slash   
             newPath = newPath.Substring(1);
-            newPath = Application.streamingAssetsPath+"/OsData/"+computerManager.name + "/Os/" + newPath;
+            newPath = Application.streamingAssetsPath + "/OsData/" + computerManager.name + "/Os/" + newPath;
         }
-        //newPath = string.IsNullOrEmpty(newPath) || newPath[0].Equals("/") ? Application.streamingAssetsPath+"/Os/" : newPath;
-        string absolutePath = Path.Combine(currentPath, newPath);
-        
-        if (!Path.GetFullPath(absolutePath).Replace("\\", "/").StartsWith(Application.streamingAssetsPath+"/OsData/"+computerManager.name+"/Os"))
+
+        Debug.Log("newPath: " + newPath);
+    
+        // Combine the current path and the new path
+        string combinedPath = Path.Combine(currentPath, newPath);
+
+        // Normalize the combined path
+        combinedPath = Path.GetFullPath(combinedPath).Replace('\\', '/');
+
+        // Ensure the combined path is within the allowed OS folder
+        if (!combinedPath.StartsWith(Application.streamingAssetsPath + "/OsData/" + computerManager.name + "/Os"))
         {
-            // The target path is outside the StreamingAssets folder, so don't execute the function
             return "";
         }
-        
+
         // Use Path.Combine to concatenate paths
-        //string fullPath = Path.Combine(newPath, "myFile.txt");
-        
-        if (Directory.Exists(absolutePath))
+        if (Directory.Exists(combinedPath))
         {
-            currentPath = absolutePath;
+            currentPath = combinedPath;
             LoadFolderContent(currentPath);
             return "\n";
         }
-        else
-        {
-            return "Folder not found: " + newPath;
-        }
+
+        return "Folder not found: " + newPath;
     }
+
 
     public string ListCurrentFolderContent(string path)
     {
         // Print the contents of the current folder to the console
+        Debug.Log("currentPath : ");
+        Debug.Log(currentPath);
         string files = "";
         LoadFolderContent(currentPath+"/"+path);
         foreach (string paths in currentFolderContent)
@@ -196,4 +206,50 @@ public class FileManager : MonoBehaviour
 
         return files;
     }
+    
+    public string GetFileName(string path)
+    {
+        // Print the contents of the current folder to the console
+        string fileName = Path.GetFileName(path); // Get the file name with extension
+        string extension = Path.GetExtension(path);
+
+        return fileName;
+    }
+    
+    public bool CheckIfFileExists(string filePath)
+    {
+        string fullPath = Path.Combine(currentPath, filePath);
+        string absolutePath = Path.GetFullPath(fullPath).Replace("\\", "/");
+        Debug.Log("absolutePath: " + absolutePath);
+
+        if (!absolutePath.StartsWith(Application.streamingAssetsPath + "/OsData/" + computerManager.name + "/Os"))
+        {
+            return false;
+        }
+
+        return File.Exists(absolutePath);
+    }
+    
+    public bool SendFile(string filePath, string destinationPath)
+    {
+
+
+        // Vérifier si le fichier source existe
+        if (!File.Exists(filePath))
+        {
+            Debug.Log("Source file does not exist.");
+            return false;
+        }
+        if (File.Exists(destinationPath))
+        {
+            Debug.Log("Source file already exists");
+            return false;
+        }
+        
+        //FileUtil.CopyFileOrDirectory(filePath, destinationPath);
+        Debug.Log("File sent successfully.");
+
+        return true;
+    }
+
 }

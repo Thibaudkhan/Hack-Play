@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Main.Scripts.Network;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Router : MonoBehaviour
@@ -8,15 +11,36 @@ public class Router : MonoBehaviour
     // The list of computers connected to this router
     private List<ComputerManager> computers = new List<ComputerManager>();
 
+    private ComputerManager _computerManager;
+
+    public ComputerManager ComputerManager
+    {
+        get => _computerManager;
+        set => _computerManager = value;
+    }
+
     // The mapping of port numbers to computers
     private Dictionary<int, ComputerManager> portMappings = new Dictionary<int, ComputerManager>();
 
     // The network manager that manages this router
-    public NetworkManager networkManager;
 
     private Dictionary<string, ComputerManager> macToComputer = new Dictionary<string, ComputerManager>();
+    private StreamWriter streamWriter;
+    //private string filePath = Application.streamingAssetsPath +"log.txt";
+    private string filePath;
 
-    
+    void Start()
+    {
+        _computerManager = gameObject.AddComponent<ComputerManager>();
+
+        //OsSystem osSystem = _computerManager.AddComponent<OsSystem>();
+        //FileManager fileManager = _computerManager.AddComponent<FileManager>();
+        //osSystem.folders = fileManager;
+        //NetworkManager.AssignIpAddress(_computerManager);
+        AddComputerToPort(19,_computerManager);
+
+    }
+
     public void AddMacComputer(ComputerManager computer)
     {
         if (computer != null && !macToComputer.ContainsKey(computer.MacAddress))
@@ -63,8 +87,7 @@ public class Router : MonoBehaviour
 
         // Add the port mapping
         portMappings.Add(port, computer);
-
-        networkManager.AssignIpAddress(computer);
+        NetworkManager.AssignIpAddress(computer);
     }
 
     // Remove a computer from a port on this router
@@ -75,7 +98,7 @@ public class Router : MonoBehaviour
             ComputerManager computer = portMappings[port];
             portMappings.Remove(port);
             computers.Remove(computer);
-            networkManager.RemoveComputerFromRoutingTable(computer);
+            NetworkManager.RemoveComputerFromRoutingTable(computer);
             Debug.Log("Computer " + computer.name + " removed from port " + port);
         }
         else
@@ -86,12 +109,13 @@ public class Router : MonoBehaviour
     
     public string GetIPAddress(ComputerManager computer)
     {
-        return networkManager.GetIpAddress(computer);
+        return NetworkManager.GetIpAddress(computer);
     }
 
     public ComputerManager GetComputer(string ipAddress)
     {
-        return networkManager.GetComputer(ipAddress);
+        // return NetworkManager.GetComputer(ipAddress)
+        return NetworkManager.GetComputer(ipAddress);
     }
 
 
@@ -112,19 +136,46 @@ public class Router : MonoBehaviour
     }
     
 
-    public void SendPacket(Packet packet)
+    // ReSharper disable Unity.PerformanceAnalysis
+    public bool SendPacket(Packet packet,ComputerManager computerManager = null,string file ="/log1.txt")
     {
-        string destinationIpAddress = packet.receiverIpAddress;
-        Debug.Log("Sending packet to " + destinationIpAddress);
+        Debug.Log("send packet "+packet.receiverIpAddress);
+        bool response = false;
         // Get the ComputerManager corresponding to the destination IP address
-        ComputerManager recipient = GetComputer(destinationIpAddress);
-        string macAddress = recipient.MacAddress;
-        // Check if the MAC address of the recipient is known
-        if (macToComputer.ContainsKey(macAddress) )
-        {
-            // Send the packet to the recipient
-            recipient.ReceivePacket(packet);
+        ComputerManager recipient = GetComputer(packet.receiverIpAddress);
+        if(recipient != null){
+            string macAddress = recipient.MacAddress;
+            // Check if the MAC address of the recipient is known
+            if (macToComputer.ContainsKey(macAddress) )
+            {
+                //filePath = Application.streamingAssetsPath + "/" + macAddress + ".txt";
+                response = true;
+            }
         }
+        if(recipient == null){
+            recipient = computerManager;
+            response = true;
+        }
+        Debug.Log("send ReceivePacket");
+
+        filePath = Application.streamingAssetsPath + file;
+        if (!File.Exists(filePath))
+        {
+            File.WriteAllText(filePath, "");
+        }
+
+        recipient.ReceivePacket(packet);
+        string logMessage = $"Sender: {packet.senderIpAddress}\n" +
+                            $"Receiver: {packet.receiverIpAddress}\n" +
+                            $"Message: {packet.message}\n" +
+                            $"Url: {packet.Url}\n" +
+                            $"Methode: {packet.Methode}\n" +
+                            $"Type: {packet.type}\n\n";
+
+
+        File.AppendAllText(filePath, logMessage);
+
+        return response;
     }
 
 }

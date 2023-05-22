@@ -41,7 +41,6 @@ MonoBehaviour:
   - attachmentTitle: Picture Attachment
     attachmentType: 2
     musicAttachment: {fileID: 0}
-    pictureAttachment: {fileID: 21300000, guid: d59af46ad47654147899b61d910f9163,
-      type: 3}
+    pictureAttachment: {fileID: 21300000, guid: d59af46ad47654147899b61d910f9163, type: 3}
     videoAttachment: {fileID: 0}
     noteAttachment: 

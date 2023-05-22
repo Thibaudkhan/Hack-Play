@@ -694,6 +694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6cde7892f77cf4490ad68ea7428124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  returnedText: 
+  argument: 
   commands:
   - commandName: Network Disconnect
     command: net /disconnect
@@ -715,6 +717,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    isNewCommand: 0
   - commandName: System Restart
     command: system /restart
     feedbackText: Restarting  in 3 seconds...
@@ -735,6 +738,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    isNewCommand: 0
   - commandName: System Shutdown
     command: system /shutdown
     feedbackText: Shutting in 3 seconds...
@@ -755,6 +759,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    isNewCommand: 0
   - commandName: System Lock
     command: system /lock
     feedbackText: 
@@ -775,6 +780,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    isNewCommand: 0
   - commandName: Clear
     command: clear
     feedbackText: 
@@ -795,6 +801,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    isNewCommand: 0
   - commandName: Nice
     command: 69420
     feedbackText: Nice
@@ -803,6 +810,7 @@ MonoBehaviour:
     onProcessEvent:
       m_PersistentCalls:
         m_Calls: []
+    isNewCommand: 0
   errorText: is not recognized as a command.
   onEnableText: DreamOS Commander - version 0.8.4a
   textColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}

@@ -1,0 +1,77 @@
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: ls
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: ls
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: ls
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: close
+Type: FTP
+
+Sender: 192.168.1.2
+Receiver: 192.168.1.1
+Message: 
+Url: 
+Methode: open
+Type: FTP
+

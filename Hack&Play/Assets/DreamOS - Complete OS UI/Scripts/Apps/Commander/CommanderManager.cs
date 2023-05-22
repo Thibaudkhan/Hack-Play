@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -16,7 +17,7 @@ namespace Michsky.DreamOS
     {
         // personal
         public string returnedText;
-        public string argument;
+        public string[] arguments;
         
         
         // Command List
@@ -60,10 +61,7 @@ namespace Michsky.DreamOS
         }
 
 
-        public void Test()
-        {
-            Debug.Log("coucou");
-        }
+
 
         void OnEnable()
         {
@@ -114,42 +112,35 @@ namespace Michsky.DreamOS
             // Reset previously called command
             currentCommand = "";
             returnedText = "";
-            argument = "";
+            //  empty arguments
+            arguments = null;
             commandIndex = -1;
             currentCommand = commandInput.text;
-            string[] words = currentCommand.Split(' ');
-            string firstWord;
-            if (words.Length == 0)
-            {
-                firstWord = currentCommand;
-            }
-            else
-            {
-                firstWord = words[0];
 
-            }
+            string[] words = currentCommand.Split(' ');
             
-            // split by space
-            // Stop previous typewriter
+          
+            string firstWord = words[0];
             StopCoroutine("ApplyTypewriter");
 
             Debug.Log(currentCommand);
+            Debug.Log("firstWord "+ firstWord.StartsWith("./"));
             // Search within command list
             for (int i = 0; i < commands.Count; i++)
             {
+
                 
-                if (firstWord == commands[i].command)
+                if (firstWord == commands[i].command )
                 {
+
                     //currentCommand = commands[i].command;
                     if (words.Length > 1)
                     {
-                        argument = words[1] ;
+                        arguments = words.Skip(1).ToArray();
 
                     }
-                    else
-                    {
-                        argument = "";
-                    }
+
+
                     commandIndex = i;
                     break;
                 }
